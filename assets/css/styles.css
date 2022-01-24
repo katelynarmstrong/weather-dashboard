@@ -3,12 +3,12 @@
     padding: 5px;
 }
 
-#search {
+.search {
     border: 3px solid red; 
 }
-#current {
+.current {
     border: 3px solid blue; 
 }
-#forecast {
+.forecast {
     border: 3px solid green; 
 }

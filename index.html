@@ -13,24 +13,42 @@
         <h1 class="page-title" id="page-title">Weather Dashboard</h1>
     </header>
 
-    <div class="container">
-        <div class="search" id="search">
-            <h2>Search for a City:</h2>
-            <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Enter: City, State or Zipcode" aria-label="City Search" aria-describedby="button-addon2">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
-          </div>
+    <main class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
+
+        <!--location search-->
+        <div class="border-bottom">
+            <h2 class="card-header">Search for a City:</h2>
+            <form>
+                <input class="search-form" name="cityName" type="text" autofocus="true" placeholder="Enter a City"/>
+                <button id="search-btn" class="btn">Search</button>
+                <button id="clear-history-btn" class="btn">Clear History</button>
+            </form>
+            </div>
+
+            <!--Previous Searches-->
+            <div id="city-list"></div>
         </div>
-        <br/>
-        <div class="current" id="current">
-            <h2>Currently</h2>
+
+        <!--Today's Weather-->
+        <div id="dailty-weather" class="col-12 col-md-8">
+            <div class="card-body">
+                <h3 class="card-holder" id="city-search-term">Today's Weather</h3>
+                <img class="weather-img m-2" id="weather-icon" alt="">
+                <p id="temperature"></p>
+                <p id="humidity"></p>
+                <p id="wind"></p>
+                <p id="UV-index"></p>
+            </div>
         </div>
-        <br/>
-        <div class="forecast" id="forecast">
-            <h2>5-Day Forecast</h2>
+
+        <!--5 Day Forecasat-->
+        <h3 class="card-header"></h3>
+        <div class="d-flex flex-row justify-content-center" id="Forecasat-weather"></div>
         </div>
-    </div>
+</main>
+
     <script src="./assets/js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

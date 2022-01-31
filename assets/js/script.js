@@ -72,6 +72,7 @@ var getDailyWeather = function(cityName){
     })
 };
 
+// get 5-Day forecast
 var getForecastWeather = function(cityName){
     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
     fetch(apiUrl).then(function(response){
@@ -102,12 +103,12 @@ var getForecastWeather = function(cityName){
     })
 };
 
-//Kelvin to Ferinheight
+// kelvin to ferinheight
 var k2f = function(k){
     return Math.floor((k - 273.15) * 1.8 +32)
 };
 
-// Past Searches
+// past searches
 var cityClickHandler = function(event){
     var cityName = event.target.textContent;
     getForecastWeather(cityName);
@@ -136,7 +137,7 @@ var saveSearch = function(){
     }
 };
 
-// Clear City Search History
+// clear city search history
 clearHistoryBtn.addEventListener("click", function(){
     localStorage.clear();
     cities = [];

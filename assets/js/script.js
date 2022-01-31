@@ -4,11 +4,11 @@ apiKey = "581ce92b85fceec3c210d9faa500eccb"
 // variable reference
 dailyWeatherEl = document.querySelector("#daily-weather")
 searchBtn = document.querySelector("#search-btn")
-cityNameInput = document.querySelector("#cityName")
+cityNameInput = document.querySelector("#city-name")
 forecastWeather = document.querySelector("#forecast-weather")
 citySearchName = document.querySelector("#city-search-term")
 cityList = document.querySelector("#city-list")
-clearHistoryBtn = document.querySelector("#clear-history-list")
+clearHistoryBtn = document.querySelector("#clear-history-btn")
 
 // city submission
 var formSubmitHandler = function(event){
@@ -29,7 +29,7 @@ var getDailyWeather = function(cityName){
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=" + apiKey;
 
     fetch(apiUrl)
-    then(function(response){
+    .then(function(response){
         if (response.ok){
             response.json().then(function(data){
             var currentDate = new Date(data.dt*1000).toLocaleDateString();
@@ -91,7 +91,7 @@ var getForecastWeather = function(cityName){
                 humidityForecast.innerHTML = "Humidity: " + data.list[i].main.humidity + "%";
                 var windForecast = document.createElement("p");
                 windForecast.innerHTML = "Wind Speed: " + data.list[i].wind.speed + " mph";
-
+                
                 forecastEl.append(dateForecast);
                 forecastEl.append(iconForecast);
                 forecastEl.append(temperatureForecast);
@@ -133,7 +133,7 @@ var saveSearch = function(){
         button.classList.add('btn');
         cityList.appendChild(button);
 
-        button.addEventListener("click", ciityClickHandler);
+        button.addEventListener("click", cityClickHandler);
     }
 };
 

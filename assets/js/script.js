@@ -86,7 +86,60 @@ var getForecastWeather = function(cityName){
                 iconForecast.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
                 var temperatureForecast = document.createElement("p");
                 temperatureForecast.innerHTML = "Temperature: " + k2f(data.list[i].main.temp) + "&#176;" + "F";
+                var humidityForecast = document.createElement("p");
+                humidityForecast.innerHTML = "Humidity: " + data.list[i].main.humidity + "%";
+                var windForecast = document.createElement("p");
+                windForecast.innerHTML = "Wind Speed: " + data.list[i].wind.speed + " mph";
+
+                forecastEl.append(dateForecast);
+                forecastEl.append(iconForecast);
+                forecastEl.append(temperatureForecast);
+                forecastEl.append(windForecast);
+                forecastEl.append(humidityForecast);
+                forecastWeather.append(forecastEl);
             }
         })
     })
-}
+};
+
+//Kelvin to Ferinheight
+var k2f = function(k){
+    return Math.floor((k - 273.15) * 1.8 +32)
+};
+
+// Past Searches
+var cityClickHandler = function(event){
+    var cityName = event.target.textContent;
+    getForecastWeather(cityName);
+    getDailyWeather(cityName);
+};
+
+let cities = JSON.parse(localStorage.getItem("cities")) || [];
+
+var saveSearch = function(){
+    var cityName = cityNameInput.value.trim();
+    if (cities.indexOf(cityName) == -1){
+        cities.push(cityName);
+        localStorage.setItem("cities", JSON.stringify(cities));
+    }
+
+    cityList.innerHTML = "";
+
+    for (var i = 0; i < cities.length; i++) {
+        var city = cities[i];
+        var button = document.createElement("button");
+        button.textContent = city;
+        button.classList.add('btn');
+        cityList.appendChild(button);
+
+        button.addEventListener("click", ciityClickHandler);
+    }
+};
+
+// Clear City Search History
+clearHistoryBtn.addEventListener("click", function(){
+    localStorage.clear();
+    cities = [];
+});
+
+searchBtn.addEventListener("click", formSubmitHandler);

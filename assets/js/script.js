@@ -17,7 +17,7 @@ var formSubmitHandler = function(event){
 
     if (cityName) {
         getDailyWeather(cityName);
-        getForecastWeather(cityName);
+        getforecastWeather(cityName);
         saveSearch();
     } else {
         alert("You must enter a city name");
@@ -73,7 +73,7 @@ var getDailyWeather = function(cityName){
 };
 
 // get 5-Day forecast
-var getForecastWeather = function(cityName){
+var getforecastWeather = function(cityName){
     var apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=" + apiKey;
     fetch(apiUrl).then(function(response){
         response.json().then(function(data){
@@ -111,7 +111,7 @@ var k2f = function(k){
 // past searches
 var cityClickHandler = function(event){
     var cityName = event.target.textContent;
-    getForecastWeather(cityName);
+    getforecastWeather(cityName);
     getDailyWeather(cityName);
 };
 
